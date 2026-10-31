@@ -1,0 +1,40 @@
+{
+  "name": "eth-wallet-factory",
+  "version": "0.1.0",
+  "description": "Ethereum wallet CLI for HD wallets, Coinbase Smart Accounts, ERC-4337 and EIP-7702 on Sepolia",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "eth-wallet": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup src/cli.ts --format esm --target node20 --out-dir dist --clean",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build",
+    "wallet:create": "tsx src/cli.ts create",
+    "wallet:inspect": "tsx src/cli.ts inspect",
+    "wallet:balance": "tsx src/cli.ts balance",
+    "aa:inspect": "tsx src/cli.ts aa-inspect",
+    "aa:send": "tsx src/cli.ts aa-send",
+    "7702:sign": "tsx src/cli.ts 7702-sign",
+    "7702:execute": "tsx src/cli.ts 7702-execute"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "7.5.0",
+    "viem": "2.32.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsup": "^8.5.0",
+    "tsx": "^4.19.4",
+    "typescript": "5.8.3"
+  }
+}
